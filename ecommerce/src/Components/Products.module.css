@@ -1,4 +1,4 @@
-.image-container {
+.imageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,9 +6,15 @@
     height: 400px;
 }
 
-.custom-img-size {
-    width: 130px;
-    height: 130px;
+.customImgSize {
+    width: 50% !important;
+    height: 50%;
     object-fit: cover;
     margin: 25px;
+}
+
+.spinnerStyle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }

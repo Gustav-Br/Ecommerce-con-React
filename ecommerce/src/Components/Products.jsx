@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
-import '../styles/Products.css';
+import styles from './Products.module.css';
 
 
-
-const spinnerStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-};
 
 function Products() {
 
@@ -36,7 +30,7 @@ function Products() {
 
   if (louding) {
     return (
-      <Spinner animation="border" role="status" variant="primary" style={spinnerStyle}>
+      <Spinner animation="border" role="status" variant="primary" className={styles.spinnerStyle}>
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
@@ -48,8 +42,8 @@ function Products() {
           <Row>
             {producto.map((item) => (
               <Col key={item.id} xs={12} sm={6} lg={4} xxl={3}>
-                <Card style={{ width: '18rem' }} className='image-container' >
-                  <Card.Img variant="top" src={item.thumbnail} className='custom-img-size' />
+                <Card style={{ width: '18rem' }} className={styles.imageContainer} >
+                  <Card.Img variant="top" src={item.thumbnail} className={styles.customImgSize} />
                   <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                     <Card.Text>
