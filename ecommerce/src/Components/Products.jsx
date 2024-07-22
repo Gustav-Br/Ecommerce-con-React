@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import { Button, Card, Col, Row, Container } from 'react-bootstrap';
 import styles from './Products.module.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -49,7 +50,7 @@ function Products() {
                     <Card.Text>
                       Price: ${item.price}
                     </Card.Text>
-                    <Button variant="primary">Detalle</Button>
+                    <Button variant="primary"><Link to={`/producto/${item.id}`}>Detalle</Link></Button>
                   </Card.Body>
                 </Card>
               </Col>
