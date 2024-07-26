@@ -38,14 +38,14 @@ function Detail() {
         return (
             <div>
                 <Container className={styles.customContainer} >
-                    <Card style={{ width: '20rem' }} className={styles.imageContainer} >
+                    <Card style={{ width: '22rem' }} className={styles.imageContainer} >
                         <Card.Img variant="top" src={producto.thumbnail} className={styles.customImgSize} />
                         <Card.Body>
                             <Card.Title>{producto.title}</Card.Title>
                             <Card.Text>
                                 Price: ${producto.price}
                             </Card.Text>
-                            <Button variant="primary" className={styles.buttonStyle}>
+                            <Button variant="primary">
                                 <Link to='/producto' className={styles.linkButStyle}>Volver</Link></Button>
                         </Card.Body>
                     </Card>
