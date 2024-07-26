@@ -17,7 +17,6 @@ function Products() {
         const res = await fetch('https://api.mercadolibre.com/sites/MLA/search?q=auriculares');
         const respData = await res.json();
         setProducto(respData.results);
-        console.log(respData.results);
         setLouding(false);
       }
       catch (e) {
@@ -50,7 +49,8 @@ function Products() {
                     <Card.Text>
                       Price: ${item.price}
                     </Card.Text>
-                    <Button variant="primary"><Link to={`/producto/${item.id}`}>Detalle</Link></Button>
+                    <Button variant="primary">
+                      <Link to={`/producto/${item.id}`} className={styles.linkButStyle}>Detalle</Link></Button>
                   </Card.Body>
                 </Card>
               </Col>

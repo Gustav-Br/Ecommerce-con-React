@@ -1,14 +1,22 @@
+.customContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 80vh;
+}
+
 .imageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    height: 400px;
+    height: 450px;
 }
 
 .customImgSize {
-    width: 50% !important;
-    height: 50%;
+    width: 75% !important;
+    height: 75%;
     object-fit: cover;
     margin: 25px;
 }
