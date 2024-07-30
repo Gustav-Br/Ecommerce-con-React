@@ -19,10 +19,10 @@ function Registro() {
         console.log(name);
         setForm({ ...form, [name]: value });
         const fieldErrors = validate(name, value);
-        console.log('Errores del campo:', fieldErrors);
-        console.log('Estado - errors:', errors);
-        console.log({ ...errors, ...fieldErrors });
-        setErrors(prev => ({ ...prev, ...fieldErrors }));
+        const newErrors = ({ ...errors, ...fieldErrors });
+        console.log('newErrors: ', newErrors);
+        setErrors({ ...errors, ...fieldErrors });
+
     };
 
 
@@ -47,7 +47,9 @@ function Registro() {
                 <div>
                     <label>Password</label>
                     <input type='password' name='password' value={form.password} onChange={handleChange} ></input>
-                    {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
+                    {errors.password && <ul style={{ color: 'red', listStyle: 'none' }}>
+                        {errors.password.map((error, index) => <li key={index} >{error}</li>)}
+                    </ul>}
                 </div>
                 <button type='submit'>Registrar</button>
             </form >
