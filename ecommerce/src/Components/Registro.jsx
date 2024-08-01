@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import validate from '../Utils/validate';
+import { validate, validateForm } from '../Utils/validate';
 
 
 
@@ -9,20 +9,19 @@ function Registro() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // validateForm();
-        console.log(form);
+        const formErrors = validateForm(form);
+        if (Object.keys(formErrors).length === 0) {
+            // console.log("Envia el formulario", form);
+        } else {
+            // console.log("El formulario contiene errores", formErrors);
+        }
     };
 
     const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        console.log(name);
+        const { name, value } = event.target;
         setForm({ ...form, [name]: value });
         const fieldErrors = validate(name, value);
-        const newErrors = ({ ...errors, ...fieldErrors });
-        console.log('newErrors: ', newErrors);
-        setErrors({ ...errors, ...fieldErrors });
-
+        setErrors(prevE => ({ ...prevE, ...fieldErrors }));     // función de actualización 
     };
 
 
@@ -52,6 +51,7 @@ function Registro() {
                     </ul>}
                 </div>
                 <button type='submit'>Registrar</button>
+
             </form >
         </div >
     );

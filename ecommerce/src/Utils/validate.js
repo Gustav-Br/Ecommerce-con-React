@@ -3,60 +3,47 @@ const validate = (name, value) => {
 
     switch (name) {
         case 'name':
-            if (value.length < 3) {
-                errorMessages[name] = 'El nombre debe contener al menos 3 caracteres';
-            } else {
-                errorMessages[name] = '';
-            }
+            errorMessages[name] = (value.length < 3) ? 'El nombre debe contener al menos 3 caracteres' : '';
             break;
 
         case 'lastName':
-            if (value.length < 3) {
-                errorMessages[name] = 'El apellido debe contener al menos 3 caracteres';
-            } else {
-                errorMessages[name] = '';
-            }
+            errorMessages[name] = (value.length < 3) ? 'El apellido debe contener al menos 3 caracteres' : '';
             break;
 
         case 'email':
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                errorMessages[name] = 'Debe ingresar un email válido';
-            } else {
-                errorMessages[name] = '';
-            }
+            errorMessages[name] = (!emailRegex.test(value)) ? 'Debe ingresar un email válido' : '';
             break;
 
         case 'password':
             const passErrors = [];
-            if (value.length < 6 || value.length > 25) {
-                passErrors.push('Debe contener entre 6 y 25 caracteres');
-            }
-            if (!/[a-z]/.test(value)) {
-                passErrors.push('Debe ingresar al menos una letra minúscula');
-            }
-            if (!/[A-Z]/.test(value)) {
-                passErrors.push('Debe ingresar al menos una letra mayúscula');
-            }
-            if (!/\d/.test(value)) {
-                passErrors.push('Debe ingresar al menos un número');
-            }
-            if (!/[#$%&!?@]/.test(value)) {
-                passErrors.push('Debe contener al menos un símbolo (#$%&!?@)');
-            }
-            if (passErrors.length > 0) {
-                errorMessages[name] = passErrors;
-            } else {
-                errorMessages[name] = '';
-            }
 
+            if (value.length < 6 || value.length > 25) passErrors.push('Debe contener entre 6 y 25 caracteres');
+            if (!/[a-z]/.test(value)) passErrors.push('Debe ingresar al menos una letra minúscula');
+            if (!/[A-Z]/.test(value)) passErrors.push('Debe ingresar al menos una letra mayúscula');
+            if (!/\d/.test(value)) passErrors.push('Debe ingresar al menos un número');
+            if (!/[#$%&!?@]/.test(value)) passErrors.push('Debe contener al menos un símbolo (#$%&!?@)');
+            errorMessages[name] = (passErrors.length > 0) ? passErrors : '';
             break;
 
         default:
             break;
     }
 
-    return errorMessages;
+    return errorMessages;      //  devuelve un objeto con el campo examinado y el error, si existe 
 };
 
-export default validate;
+const validateForm = (form) => {
+
+    let validateErrors = {};
+    for (const key in form) {
+        const fieldErrors = validate(key, form[key]);
+        if (fieldErrors[key]) {
+            validateErrors[key] = fieldErrors[key];
+        }
+    }
+
+    return validateErrors;      //devuelve un objeto con los errores, un objeto vacio si no hay errores
+};
+
+export { validate, validateForm };
