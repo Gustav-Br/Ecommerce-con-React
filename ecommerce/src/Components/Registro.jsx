@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { validate, validateForm } from '../Utils/validate';
+import firebase from '../Config/firebase';
 
 
 
@@ -7,13 +8,31 @@ function Registro() {
     const [form, setForm] = useState({ name: '', lastName: '', email: '', password: '' });
     const [errors, setErrors] = useState({});
 
-    const handleSubmit = (event) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const formErrors = validateForm(form);
         if (Object.keys(formErrors).length === 0) {
-            // console.log("Envia el formulario", form);
+            console.log("Envia el formulario", form);
+
+            try {
+                const responseUser = await firebase.auth().createUserWithEmailAndPassword(form.email, form.password);
+                console.log("responseUser:", responseUser.user.uid);
+                if (responseUser.user.uid) {
+                    console.log(responseUser.user.uid);
+                    const document = await firebase.firestore().collection('usuarios').add({
+                        name: form.name,
+                        lastName: form.lastName,
+                        userId: responseUser.user.uid
+                    });
+                    console.log(document);
+                }
+            }
+            catch (e) {
+                console.log(e);
+            }
         } else {
-            // console.log("El formulario contiene errores", formErrors);
+            console.log("El formulario contiene errores", formErrors);
         }
     };
 
