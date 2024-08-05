@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import firebase from '../Config/firebase';
+import { Form, Button } from 'react-bootstrap';
 
 
 function Login() {
@@ -27,17 +28,19 @@ function Login() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>email</label>
-                    <input type='email' name='email' value={form.email} onChange={handleChange} ></input>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type='password' name='password' value={form.password} onChange={handleChange} ></input>
-                </div>
-                <button type='submit'>Ingresar</button>
-            </form >
+            <Form onSubmit={handleSubmit} className="w-25 mx-auto">
+                <Form.Group className="mb-3" controlId="formGroupEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" name="email"
+                        value={form.email} onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" name="password"
+                        value={form.password} onChange={handleChange} />
+                </Form.Group>
+                <Button type='submit'>Ingresar</Button>
+            </Form>
         </div >
     );
 }
