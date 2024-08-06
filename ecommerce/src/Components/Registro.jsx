@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { validate, validateForm } from '../Utils/validate';
+import { Form, Button } from 'react-bootstrap';
 import firebase from '../Config/firebase';
 
 
@@ -19,13 +20,13 @@ function Registro() {
                 const responseUser = await firebase.auth().createUserWithEmailAndPassword(form.email, form.password);
                 console.log("responseUser:", responseUser.user.uid);
                 if (responseUser.user.uid) {
-                    console.log(responseUser.user.uid);
                     const document = await firebase.firestore().collection('usuarios').add({
                         name: form.name,
                         lastName: form.lastName,
                         userId: responseUser.user.uid
                     });
-                    console.log(document);
+                    console.log("SE REGISTRO CORRECTAMENTE !!", document);
+                    setForm({ name: '', lastName: '', email: '', password: '' });
                 }
             }
             catch (e) {
@@ -46,32 +47,35 @@ function Registro() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Nombre</label>
-                    <input type='text' name='name' value={form.name} onChange={handleChange} ></input>
+            <Form onSubmit={handleSubmit} className="w-25 mx-auto">
+                <Form.Group className="mb-3" controlId="formGroupName">
+                    <Form.Label>Nombre</Form.Label>
+                    <Form.Control type="text" name="name" value={form.name}
+                        onChange={handleChange} placeholder="Ingrese nombre" />
                     {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
-                </div>
-                <div>
-                    <label>Apellido</label>
-                    <input type='text' name='lastName' value={form.lastName} onChange={handleChange} ></input>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupLastName">
+                    <Form.Label>Apellido</Form.Label>
+                    <Form.Control type="text" name='lastName' value={form.lastName}
+                        onChange={handleChange} placeholder="Apellido" />
                     {errors.lastName && <p style={{ color: 'red' }}>{errors.lastName}</p>}
-                </div>
-                <div>
-                    <label>email</label>
-                    <input type='email' name='email' value={form.email} onChange={handleChange} ></input>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" name='email' value={form.email}
+                        onChange={handleChange} placeholder="Enter email" />
                     {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type='password' name='password' value={form.password} onChange={handleChange} ></input>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGroupPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" name='password' value={form.password}
+                        onChange={handleChange} placeholder="Password" />
                     {errors.password && <ul style={{ color: 'red', listStyle: 'none' }}>
                         {errors.password.map((error, index) => <li key={index} >{error}</li>)}
                     </ul>}
-                </div>
-                <button type='submit'>Registrar</button>
-
-            </form >
+                </Form.Group>
+                <Button type='submit' variant="primary">Registrar</Button>
+            </Form>
         </div >
     );
 }
