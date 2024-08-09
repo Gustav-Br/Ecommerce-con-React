@@ -2,38 +2,44 @@ import { useState } from 'react';
 import { validate, validateForm } from '../Utils/validate';
 import { Form, Button } from 'react-bootstrap';
 import firebase from '../Config/firebase';
+import AlertCustom from './Alert';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Registro() {
     const [form, setForm] = useState({ name: '', lastName: '', email: '', password: '' });
     const [errors, setErrors] = useState({});
+    const [alert, setAlert] = useState({ variant: '', text: '' });
+    const navigate = useNavigate();
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formErrors = validateForm(form);
         if (Object.keys(formErrors).length === 0) {
-            console.log("Envia el formulario", form);
-
+            //  Envia  el formulario 
             try {
                 const responseUser = await firebase.auth().createUserWithEmailAndPassword(form.email, form.password);
-                console.log("responseUser:", responseUser.user.uid);
                 if (responseUser.user.uid) {
-                    const document = await firebase.firestore().collection('usuarios').add({
+                    await firebase.firestore().collection('usuarios').add({
                         name: form.name,
                         lastName: form.lastName,
                         userId: responseUser.user.uid
                     });
-                    console.log("SE REGISTRO CORRECTAMENTE !!", document);
                     setForm({ name: '', lastName: '', email: '', password: '' });
+                    setAlert({ variant: 'success', text: 'Gracias por registrarse' });
+                    setTimeout(() => {
+                        navigate('/ingresar')
+                    }, 2500);
                 }
             }
             catch (e) {
                 console.log(e);
+                setAlert({ variant: 'danger', text: 'Ha ocurrido un error' });
             }
         } else {
-            console.log("El formulario contiene errores", formErrors);
+            setAlert({ variant: 'danger', text: 'El formulario contiene errores' });
         }
     };
 
@@ -48,19 +54,19 @@ function Registro() {
     return (
         <div>
             <Form onSubmit={handleSubmit} className="w-25 mx-auto">
-                <Form.Group className="mb-3" controlId="formGroupName">
+                <Form.Group className="mb-2" controlId="formGroupName">
                     <Form.Label>Nombre</Form.Label>
                     <Form.Control type="text" name="name" value={form.name}
                         onChange={handleChange} placeholder="Ingrese nombre" />
                     {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formGroupLastName">
+                <Form.Group className="mb-2" controlId="formGroupLastName">
                     <Form.Label>Apellido</Form.Label>
                     <Form.Control type="text" name='lastName' value={form.lastName}
                         onChange={handleChange} placeholder="Apellido" />
                     {errors.lastName && <p style={{ color: 'red' }}>{errors.lastName}</p>}
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formGroupEmail">
+                <Form.Group className="mb-2" controlId="formGroupEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" name='email' value={form.email}
                         onChange={handleChange} placeholder="Enter email" />
@@ -76,6 +82,7 @@ function Registro() {
                 </Form.Group>
                 <Button type='submit' variant="primary">Registrar</Button>
             </Form>
+            {alert && <AlertCustom {...alert} />}
         </div >
     );
 }

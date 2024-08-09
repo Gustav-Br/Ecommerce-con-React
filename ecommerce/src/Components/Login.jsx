@@ -1,22 +1,32 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import firebase from '../Config/firebase';
 import { Form, Button } from 'react-bootstrap';
+import AlertCustom from './Alert';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthContext';
 
 
 function Login() {
     const [form, setForm] = useState({ email: '', password: '' });
+    const [alert, setAlert] = useState({ variant: '', text: '' });
+    const navigate = useNavigate();
+    const context = useContext(AuthContext);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         try {
             const responseUser = await firebase.auth().signInWithEmailAndPassword(form.email, form.password);
             if (responseUser.user.uid) {
-                console.log(responseUser.user.uid, "Loguin exitoso");
+                setAlert({ variant: 'success', text: 'Login exitoso' });
+                setTimeout(() => {
+                    navigate('/producto')
+                }, 2000);
+                context.handlerLogin();
             }
         }
         catch (e) {
             console.log(e);
+            setAlert({ variant: 'danger', text: 'Ha ocurrido un error' })
         }
     };
 
@@ -41,6 +51,7 @@ function Login() {
                 </Form.Group>
                 <Button type='submit'>Ingresar</Button>
             </Form>
+            {alert && <AlertCustom {...alert} />}
         </div >
     );
 }

@@ -17,7 +17,7 @@ function Products() {
     useEffect(() => {
         const result = async () => {
             try {
-                const res = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${search || 'celulares'}`);
+                const res = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${search}`);
                 const respData = await res.json();
                 setProducto(respData.results);
                 setLouding(false);
