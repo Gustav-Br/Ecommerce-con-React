@@ -1,0 +1,87 @@
+.customContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 80vh;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 500px;
+    width: 380px;
+}
+
+.customImgSize {
+    width: auto !important;
+    max-height: 280px;
+    object-fit: cover;
+    margin: 20px 0;
+}
+
+.spinnerStyle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.linkButStyle {
+    color: white;
+    text-decoration: none;
+}
+
+.linkButStyle:hover {
+    background-color: blue;
+    padding: 10px 18px;
+    border-radius: 6px;
+    margin: 0 -12px;
+}
+
+.thumbnailImg {
+    height: 90px;
+    width: auto;
+    object-fit: cover;
+    margin: 5px;
+    transition: transform 0.1s ease, z-index 0.1s ease;
+}
+
+.thumbnailContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    border: none;
+    position: relative;
+}
+
+.thumbnailCard {
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.topThumbnailImg:hover {
+    margin: 5px;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: scale(3) translate(20%, 25%);
+    /* Mover hacia abajo */
+}
+
+.bottomThumbnailImg:hover {
+    margin: 5px;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: scale(3) translate(20%, -25%);
+    /* Mover hacia arriba */
+}

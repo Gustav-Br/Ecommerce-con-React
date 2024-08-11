@@ -17,11 +17,15 @@ function Login() {
         try {
             const responseUser = await firebase.auth().signInWithEmailAndPassword(form.email, form.password);
             if (responseUser.user.uid) {
-                setAlert({ variant: 'success', text: 'Login exitoso' });
+                const userDocument = await firebase.firestore().collection('usuarios')
+                    .where('userId', '==', responseUser.user.uid)
+                    .get()
+                const user = userDocument.docs[0].data();
+                context.handlerLogin(user.name);
+                setAlert({ variant: 'success', text: `Bienvenido/a ${user?.name}` });
                 setTimeout(() => {
                     navigate('/producto')
                 }, 2000);
-                context.handlerLogin();
             }
         }
         catch (e) {

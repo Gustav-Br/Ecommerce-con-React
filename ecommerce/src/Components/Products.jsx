@@ -40,7 +40,7 @@ function Products() {
         event.preventDefault();
         setSearch(input);
     };
-
+    console.log(producto);
     if (louding) {
         return (
             <Spinner animation="border" role="status" variant="primary" className={styles.spinnerStyle}>

@@ -25,9 +25,10 @@ function NavBar() {
                         </>}
                     </Nav>
                 </Navbar.Collapse>
+                {context.login && <div>
+                    Hola {context.user}</div>}
             </Container>
         </Navbar>);
-
 }
 
 export default NavBar;

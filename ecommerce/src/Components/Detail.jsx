@@ -18,6 +18,7 @@ function Detail() {
                 const respData = await res.json();
                 setProducto(respData);
                 setLouding(false);
+                console.log(producto);
             }
             catch (e) {
                 console.log(e);
