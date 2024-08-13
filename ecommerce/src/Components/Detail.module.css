@@ -12,13 +12,14 @@
     align-items: center;
     margin-bottom: 20px;
     height: 500px;
+    width: 380px;
 }
 
 .customImgSize {
-    width: 75% !important;
-    height: 75%;
+    width: auto !important;
+    max-height: 280px;
     object-fit: cover;
-    margin: 25px;
+    margin: 20px 0;
 }
 
 .spinnerStyle {
@@ -37,4 +38,48 @@
     padding: 10px 18px;
     border-radius: 6px;
     margin: 0 -12px;
+}
+
+.thumbnailImg {
+    height: 85px;
+    width: auto;
+    object-fit: cover;
+    margin: 5px;
+    transition: transform 0.1s ease, z-index 0.1s ease;
+    position: relative;
+    /* Mantiene su lugar en el flujo */
+}
+
+.thumbnailContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
+.thumbnailCard {
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* Para que el hover de la imagen se posicione sobre ella */
+}
+
+.topThumbnailImg:hover {
+    z-index: 10;
+    position: relative;
+    top: 30%;
+    left: 15%;
+    /* Mover hacia abajo */
+    transform: scale(3) translate(15%, 30%);
+}
+
+.bottomThumbnailImg:hover {
+    z-index: 10;
+    position: relative;
+    top: -30%;
+    left: 15%;
+    /* Mover hacia arriba */
+    transform: scale(3) translate(15%, -30%);
 }

@@ -4,7 +4,7 @@ import Products from '../Components/Products';
 import Login from '../Components/Login';
 import Registro from '../Components/Registro';
 import NotFound from '../Components/NotFound';
-import Detalle2 from '../Components/Detalle2';
+import Detail from '../Components/Detail';
 
 
 
@@ -14,7 +14,7 @@ function Public() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/producto' element={<Products />} />
-                <Route path='/producto/:id' element={<Detalle2 />} />
+                <Route path='/producto/:id' element={<Detail />} />
                 <Route path='/ingresar' element={<Login />} />
                 <Route path='/alta' element={<Registro />} />
                 <Route path='*' element={<NotFound />} />

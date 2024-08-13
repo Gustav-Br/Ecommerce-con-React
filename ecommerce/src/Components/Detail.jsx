@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Container } from 'react-bootstrap';
+import { Button, Card, Container, Col } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link, useParams } from "react-router-dom";
 import styles from './Detail.module.css';
@@ -18,7 +18,6 @@ function Detail() {
                 const respData = await res.json();
                 setProducto(respData);
                 setLouding(false);
-                console.log(producto);
             }
             catch (e) {
                 console.log(e);
@@ -39,17 +38,32 @@ function Detail() {
         return (
             <div>
                 <Container className={styles.customContainer} >
-                    <Card style={{ width: '22rem' }} className={styles.imageContainer} >
-                        <Card.Img variant="top" src={producto.thumbnail} className={styles.customImgSize} />
-                        <Card.Body>
-                            <Card.Title>{producto.title}</Card.Title>
-                            <Card.Text>
-                                Price: ${producto.price}
-                            </Card.Text>
-                            <Button variant="primary">
-                                <Link to='/producto' className={styles.linkButStyle}>Volver</Link></Button>
-                        </Card.Body>
-                    </Card>
+                    {/* Tarjeta para imágenes en miniatura */}
+                    <Col xs={12} md={4} >
+                        <Card style={{ width: '9rem', border: 'none' }} className={styles.thumbnailContainer} >
+                            <Col>
+                                {producto.pictures.slice(0, 5).map((picture, index) => (
+                                    <Card key={picture.id} className={styles.thumbnailCard}>
+                                        <img src={picture.url} alt={producto.title} className={`${styles.thumbnailImg} ${index < 2 ? styles.topThumbnailImg : styles.bottomThumbnailImg}`} />
+                                    </Card>
+                                ))}
+                            </Col>
+                        </Card>
+                    </Col>
+                    {/* Tarjeta para imágen principal */}
+                    <Col xs={12} md={6} >
+                        <Card className={styles.imageContainer} >
+                            <Card.Img variant="top" src={producto.pictures[0].url} className={styles.customImgSize} />
+                            <Card.Body>
+                                <Card.Title>{producto.title}</Card.Title>
+                                <Card.Text>
+                                    Price: ${producto.price}
+                                </Card.Text>
+                                <Button variant="primary">
+                                    <Link to='/producto' className={styles.linkButStyle}>Volver</Link></Button>
+                            </Card.Body>
+                        </Card>
+                    </Col>
                 </Container>
             </div >
         );
