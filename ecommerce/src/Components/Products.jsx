@@ -11,7 +11,9 @@ function Products() {
     const [producto, setProducto] = useState([]);
     const [louding, setLouding] = useState(true);
     const [input, setInput] = useState('');
-    const [search, setSearch] = useState('celulares');
+    const [search, setSearch] = useState(sessionStorage.getItem('search') || 'celulares');
+    console.log("Input= ", input, "Search= ", search);
+
 
 
     useEffect(() => {
@@ -39,6 +41,7 @@ function Products() {
     const handleSubmit = (event) => {
         event.preventDefault();
         setSearch(input);
+        sessionStorage.setItem('search', input);
     };
     console.log(producto);
     if (louding) {
