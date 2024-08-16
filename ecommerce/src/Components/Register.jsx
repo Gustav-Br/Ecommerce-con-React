@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function Registro() {
+function Register() {
     const [form, setForm] = useState({ name: '', lastName: '', email: '', password: '' });
     const [errors, setErrors] = useState({});
     const [alert, setAlert] = useState({ variant: '', text: '' });
@@ -87,4 +87,4 @@ function Registro() {
     );
 }
 
-export default Registro;
+export default Register;

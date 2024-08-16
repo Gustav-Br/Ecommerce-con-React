@@ -3,10 +3,14 @@ import { Button, Card, Container, Col } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link, useParams } from "react-router-dom";
 import styles from './Detail.module.css';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
+
 
 
 function Detail() {
 
+    const context = useContext(AuthContext);
     const { id } = useParams();
     const [producto, setProducto] = useState({});
     const [louding, setLouding] = useState(true);
@@ -35,6 +39,8 @@ function Detail() {
         );
     }
     else {
+        console.log(producto);
+
         return (
             <div>
                 <Container className={styles.customContainer} >
@@ -59,8 +65,14 @@ function Detail() {
                                 <Card.Text>
                                     Price: ${producto.price}
                                 </Card.Text>
-                                <Button variant="primary">
+                                <Button variant="primary" style={{ marginRight: '8px' }}>
                                     <Link to='/producto' className={styles.linkButStyle}>Volver</Link></Button>
+                                {context.login && <>
+                                    <Button variant="primary" style={{ marginLeft: '8px' }}>
+                                        <Link to={`/altafavorito/${id}`} className={styles.linkButStyle}>Favorito</Link></Button>
+                                    <Button variant="primary" style={{ marginLeft: '8px' }}>
+                                        <Link to='/compra' className={styles.linkButStyle}>Comprar</Link></Button>
+                                </>}
                             </Card.Body>
                         </Card>
                     </Col>

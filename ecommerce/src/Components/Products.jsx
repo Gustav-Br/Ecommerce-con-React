@@ -12,8 +12,6 @@ function Products() {
     const [louding, setLouding] = useState(true);
     const [input, setInput] = useState('');
     const [search, setSearch] = useState(sessionStorage.getItem('search') || 'celulares');
-    console.log("Input= ", input, "Search= ", search);
-
 
 
     useEffect(() => {
@@ -40,10 +38,12 @@ function Products() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setSearch(input);
-        sessionStorage.setItem('search', input);
+        if (input) {
+            setSearch(input);
+            sessionStorage.setItem('search', input);
+        };
     };
-    console.log(producto);
+
     if (louding) {
         return (
             <Spinner animation="border" role="status" variant="primary" className={styles.spinnerStyle}>
@@ -83,7 +83,6 @@ function Products() {
             </div>
         );
     }
-
 }
 
 export default Products;
