@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Container, Col } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from './Detail.module.css';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
@@ -14,6 +14,7 @@ function Detail() {
     const { id } = useParams();
     const [producto, setProducto] = useState({});
     const [louding, setLouding] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const result = async () => {
@@ -31,6 +32,10 @@ function Detail() {
 
     }, [id]);
 
+    const handlerFavorite = (producto) => {
+        navigate('/altafavorito', { state: { producto } })
+    }
+
     if (louding) {
         return (
             <Spinner animation="border" role="status" variant="primary" className={styles.spinnerStyle}>
@@ -39,8 +44,6 @@ function Detail() {
         );
     }
     else {
-        console.log(producto);
-
         return (
             <div>
                 <Container className={styles.customContainer} >
@@ -62,15 +65,15 @@ function Detail() {
                             <Card.Img variant="top" src={producto.pictures[0].url} className={styles.customImgSize} />
                             <Card.Body>
                                 <Card.Title>{producto.title}</Card.Title>
-                                <Card.Text>
-                                    Price: ${producto.price}
-                                </Card.Text>
-                                <Button variant="primary" style={{ marginRight: '8px' }}>
+                                <Card.Text>Precio: ${producto.price}</Card.Text>
+                                <Card.Text>{producto.warranty}</Card.Text>
+                                <Button variant="primary" className={styles.buttonStyle}>
                                     <Link to='/producto' className={styles.linkButStyle}>Volver</Link></Button>
                                 {context.login && <>
-                                    <Button variant="primary" style={{ marginLeft: '8px' }}>
-                                        <Link to={`/altafavorito/${id}`} className={styles.linkButStyle}>Favorito</Link></Button>
-                                    <Button variant="primary" style={{ marginLeft: '8px' }}>
+                                    <Button variant="primary" className={styles.buttonStyle}
+                                        onClick={() => { handlerFavorite(producto) }}>
+                                        <Link className={styles.linkButStyle}>Favorito</Link></Button>
+                                    <Button variant="primary" className={styles.buttonStyle}>
                                         <Link to='/compra' className={styles.linkButStyle}>Comprar</Link></Button>
                                 </>}
                             </Card.Body>

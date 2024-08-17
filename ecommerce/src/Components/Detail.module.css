@@ -19,13 +19,16 @@
     width: auto !important;
     max-height: 280px;
     object-fit: cover;
-    margin: 20px 0;
 }
 
 .spinnerStyle {
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+.buttonStyle {
+    margin: 0 8px;
 }
 
 .linkButStyle {

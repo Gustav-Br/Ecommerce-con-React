@@ -23,7 +23,7 @@ function Public() {
                 <Route path='/ingresar' element={<Login />} />
                 <Route path='/alta' element={<Register />} />
                 <Route path='/compra' element={<Purchase />} />
-                <Route path='/altafavorito/:id' element={<FavoritesAdd />} />
+                <Route path='/altafavorito' element={<FavoritesAdd />} />
                 <Route path='/verfavorito' element={<FavoritesView />} />
                 <Route path='/editfavorito' element={<FavoritesEdit />} />
                 <Route path='/borrarfavorito' element={<FavoritesDelet />} />
