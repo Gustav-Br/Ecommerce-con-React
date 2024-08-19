@@ -16,9 +16,9 @@
 }
 
 .customImgSize {
-    width: auto !important;
+    width: auto;
     max-height: 280px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .spinnerStyle {

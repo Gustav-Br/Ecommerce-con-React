@@ -6,13 +6,11 @@ import AlertCustom from './Alert';
 import { useNavigate } from 'react-router-dom';
 
 
-
 function Register() {
     const [form, setForm] = useState({ name: '', lastName: '', email: '', password: '' });
     const [errors, setErrors] = useState({});
     const [alert, setAlert] = useState({ variant: '', text: '' });
     const navigate = useNavigate();
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -31,7 +29,7 @@ function Register() {
                     setAlert({ variant: 'success', text: 'Gracias por registrarse' });
                     setTimeout(() => {
                         navigate('/ingresar')
-                    }, 2500);
+                    }, 2000);
                 }
             }
             catch (e) {
@@ -50,9 +48,9 @@ function Register() {
         setErrors(prevE => ({ ...prevE, ...fieldErrors }));     // función de actualización 
     };
 
-
     return (
         <div>
+            {alert.variant && <AlertCustom {...alert} />}
             <Form onSubmit={handleSubmit} className="w-25 mx-auto">
                 <Form.Group className="mb-2" controlId="formGroupName">
                     <Form.Label>Nombre</Form.Label>
@@ -82,7 +80,6 @@ function Register() {
                 </Form.Group>
                 <Button type='submit' variant="primary">Registrar</Button>
             </Form>
-            {alert && <AlertCustom {...alert} />}
         </div >
     );
 }

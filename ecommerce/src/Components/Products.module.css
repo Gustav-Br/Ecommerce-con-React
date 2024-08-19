@@ -9,7 +9,7 @@
 .customImgSize {
     max-width: 150px;
     height: 50%;
-    object-fit: cover;
+    object-fit: contain;
     margin: 25px;
 }
 

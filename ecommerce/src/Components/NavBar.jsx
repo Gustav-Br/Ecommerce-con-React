@@ -7,7 +7,7 @@ import { AuthContext } from "../Context/AuthContext";
 function NavBar() {
     const context = useContext(AuthContext);
     return (
-        <Navbar expand="lg" className='bg-info mb-5 opacity-75' style={{ height: '90px' }}>
+        <Navbar expand="lg" className='bg-info mb-5 opacity-75' style={{ height: '90px', position: 'relative', zIndex: 100 }}>
             <Container>
                 <Navbar.Brand >Ecommerce</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -21,11 +21,11 @@ function NavBar() {
 
                         {context.login && <>
                             <Nav.Link as={Link} to='/producto'>Productos</Nav.Link>
-                            <NavDropdown title="Favoritos" id="basic-nav-dropdown">
-                                <NavDropdown.Item as={Link} to='/altafavorito'>Alta Favoritos</NavDropdown.Item>
+                            <NavDropdown title="Favoritos" id="basic-nav-dropdown" >
+                                <NavDropdown.Item  >Favoritos</NavDropdown.Item>
+                                <NavDropdown.Divider />
                                 <NavDropdown.Item as={Link} to='/editfavorito'>Editar Favoritos</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to='/verfavorito'>Ver Favoritos</NavDropdown.Item>
-                                <NavDropdown.Divider />
                                 <NavDropdown.Item as={Link} to='/borrarfavorito'>Borrar Favorito</NavDropdown.Item>
                             </NavDropdown>
 

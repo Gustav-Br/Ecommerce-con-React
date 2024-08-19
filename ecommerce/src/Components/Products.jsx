@@ -70,7 +70,7 @@ function Products() {
                                     <Card.Body>
                                         <Card.Title>{item.title}</Card.Title>
                                         <Card.Text>
-                                            Price: ${item.price}
+                                            Precio: ${item.price}
                                         </Card.Text>
                                         <Button variant="primary">
                                             <Link to={`/producto/${item.id}`} className={styles.linkButStyle}>Detalle</Link></Button>
