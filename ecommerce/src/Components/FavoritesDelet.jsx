@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button, Card, Col, Container } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import firebase from '../Config/firebase';
-import styles from './FavoritesView.module.css';
+import styles from './FavoritesDelet.module.css';
 import AlertCustom from "./Alert";
 
 
@@ -44,33 +44,27 @@ function FavoritesDelet() {
         <div>
             <h3 className={styles.title}>Vas a Eliminar este producto</h3>
             {alert.variant && <AlertCustom {...alert} />}
-            <Container >
-                <Col>
-                    <Card style={{ width: '20rem' }} className={styles.imageContainer} >
-                        <Card.Img variant="top" src={producto.imagen} className={styles.customImgSize} />
-                        <Card.Body>
-                            <Card.Title>{producto.descripcion}</Card.Title>
-                            <Card.Text>{producto.descripcion}</Card.Text>
-                            <Card.Text>{producto.garantia}</Card.Text>
-                            <Card.Text>
-                                Precio: ${producto.precio}
-                            </Card.Text>
-                            {context.login && <>
-                                <Button variant="primary" className={styles.buttonStyle}
-                                    onClick={() => handleDelete(producto)}>
-                                    <span className={styles.linkButStyle}>Eliminar</span></Button>
-                                <Button variant="primary" className={styles.buttonStyle}>
-                                    <Link to='/verfavorito' className={styles.linkButStyle}>Cancelar</Link></Button>
-                            </>}
-                        </Card.Body>
-                    </Card>
-                </Col>
-
-
+            <Container className={styles.customContainer}>
+                <Card style={{ width: '22rem' }} className={styles.imageContainer} >
+                    <Card.Img variant="top" src={producto.imagen} className={styles.customImgSize} />
+                    <Card.Body>
+                        <Card.Title>{producto.descripcion}</Card.Title>
+                        <Card.Text>{producto.descripcion}</Card.Text>
+                        <Card.Text>
+                            Precio: ${producto.precio}
+                        </Card.Text>
+                        {context.login && <>
+                            <Button variant="primary" className={styles.buttonStyle}
+                                onClick={() => handleDelete(producto)}>
+                                <span className={styles.linkButStyle}>Eliminar</span></Button>
+                            <Button variant="primary" className={styles.buttonStyle}>
+                                <Link to='/verfavorito' className={styles.linkButStyle}>Cancelar</Link></Button>
+                        </>}
+                    </Card.Body>
+                </Card>
             </Container>
         </div>
     )
-
 };
 
 export default FavoritesDelet;

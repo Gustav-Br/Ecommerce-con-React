@@ -1,30 +1,18 @@
-import { useContext, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import firebase from '../Config/firebase';
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Context/AuthContext";
 import AlertCustom from "./Alert";
 import styles from './FavoritesView.module.css';
-import { AuthContext } from "../Context/AuthContext";
 
 
-function FavoritesEdit() {
-    const context = useContext(AuthContext);
-    const location = useLocation();
-    const { producto } = location.state || {};
+function FavoritesCustom() {
+
     const [form, setForm] = useState({ descripcion: '', precio: 0, imagen: '', garantia: '' });
-    const navigate = useNavigate();
     const [alert, setAlert] = useState({ variant: '', text: '' });
-
-    useEffect(() => {
-        if (producto) {
-            setForm({
-                descripcion: producto.descripcion || '',
-                precio: producto.precio || 0,
-                imagen: producto.imagen || '',
-                garantia: producto.garantia || ''
-            });
-        }
-    }, [producto]);
+    const context = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -34,24 +22,19 @@ function FavoritesEdit() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const user = firebase.auth().currentUser;
-        const id = producto.id;
-        if (user && id) {
+        if (user) {
+            const producto = { ...form, userId: user.uid }
             try {
-                const querySnapshot = firebase.firestore().collection('productos').doc(id);
-                await querySnapshot.update({
-                    descripcion: form.descripcion,
-                    precio: form.precio,
-                    imagen: form.imagen,
-                    garantia: form.garantia
-                });
-                setAlert({ variant: 'success', text: 'Documento actualizado correctamente' });
+                const querySnapshot = firebase.firestore().collection('productos');
+                await querySnapshot.add(producto);
+                setAlert({ variant: 'success', text: 'Documento creado correctamente' });
                 setTimeout(() => {
                     navigate('/verfavorito')
                 }, 2000);
             }
             catch (e) {
                 console.log(e);
-                setAlert({ variant: 'danger', text: 'Error al actualizar documento' });
+                setAlert({ variant: 'danger', text: 'Error al crear documento' });
                 setTimeout(() => {
                     navigate('/verfavorito')
                 }, 2000);
@@ -61,7 +44,7 @@ function FavoritesEdit() {
 
     return (
         <div>
-            <h4 className={styles.title}>Editar Favorito</h4>
+            <h4 className={styles.title}>Agregar producto Favorito</h4>
             {context.login && <>
                 <Form onSubmit={handleSubmit} className="w-25 mx-auto">
                     <Form.Group className="mb-2" controlId="formGroupDescription">
@@ -91,8 +74,8 @@ function FavoritesEdit() {
                 </Form>
             </>}
             {alert.variant && <AlertCustom {...alert} />}
-        </div >
-    );
+        </div>
+    )
 };
 
-export default FavoritesEdit;
+export default FavoritesCustom;

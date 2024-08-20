@@ -24,9 +24,8 @@ function NavBar() {
                             <NavDropdown title="Favoritos" id="basic-nav-dropdown" >
                                 <NavDropdown.Item  >Favoritos</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item as={Link} to='/editfavorito'>Editar Favoritos</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to='/verfavorito'>Ver Favoritos</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to='/borrarfavorito'>Borrar Favorito</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to='/agregarfavorito'>Agregar Favorito</NavDropdown.Item>
                             </NavDropdown>
 
                             <Nav.Link onClick={context.handlerLogout}>Salir</Nav.Link>

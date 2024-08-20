@@ -60,12 +60,9 @@ function FavoritesView() {
                                 <Card style={{ width: '20rem' }} className={styles.imageContainer} >
                                     <Card.Img variant="top" src={item.imagen} className={styles.customImgSize} />
                                     <Card.Body>
-                                        <Card.Title>{item.nombre}</Card.Title>
-                                        <Card.Text>{item.descripcion}</Card.Text>
+                                        <Card.Title>{item.descripcion}</Card.Title>
                                         <Card.Text>{item.garantia}</Card.Text>
-                                        <Card.Text>
-                                            Precio: ${item.precio}
-                                        </Card.Text>
+                                        <Card.Text>Precio: ${item.precio}</Card.Text>
                                         {context.login && <>
                                             <Button variant="primary" className={styles.buttonStyle}
                                                 onClick={() => handleFavEdit(item)}>

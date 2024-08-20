@@ -5,12 +5,11 @@ import Login from '../Components/Login';
 import NotFound from '../Components/NotFound';
 import Detail from '../Components/Detail';
 import Register from '../Components/Register';
-import Purchase from '../Components/Purchase';
 import FavoritesView from '../Components/FavoritesView';
 import FavoritesEdit from '../Components/FavoritesEdit';
 import FavoritesDelet from '../Components/FavoritesDelet';
 import FavoritesAdd from '../Components/FavoritesAdd';
-
+import FavoritesCustom from '../Components/FavoritesCustom';
 
 
 function Public() {
@@ -22,9 +21,9 @@ function Public() {
                 <Route path='/producto/:id' element={<Detail />} />
                 <Route path='/ingresar' element={<Login />} />
                 <Route path='/alta' element={<Register />} />
-                <Route path='/compra' element={<Purchase />} />
                 <Route path='/altafavorito' element={<FavoritesAdd />} />
                 <Route path='/verfavorito' element={<FavoritesView />} />
+                <Route path='/agregarfavorito' element={<FavoritesCustom />} />
                 <Route path='/editfavorito' element={<FavoritesEdit />} />
                 <Route path='/borrarfavorito' element={<FavoritesDelet />} />
                 <Route path='*' element={<NotFound />} />

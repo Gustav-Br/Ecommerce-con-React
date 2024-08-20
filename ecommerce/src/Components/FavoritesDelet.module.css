@@ -3,15 +3,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 550px;
+    min-height: 65vh;
 }
 
 .imageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 450px;
-    width: 350px;
+    max-height: 470px;
+    max-width: 360px;
 }
 
 .customImgSize {
@@ -20,6 +20,10 @@
     max-height: 190px;
     object-fit: contain;
     margin: 0 20px;
+}
+
+.title {
+    margin-bottom: 45px;
 }
 
 .spinnerStyle {

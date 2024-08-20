@@ -73,8 +73,6 @@ function Detail() {
                                     <Button variant="primary" className={styles.buttonStyle}
                                         onClick={() => { handlerFavorite(producto) }}>
                                         <Link className={styles.linkButStyle}>Add Favorito</Link></Button>
-                                    <Button variant="primary" className={styles.buttonStyle}>
-                                        <Link to='/compra' className={styles.linkButStyle}>Comprar</Link></Button>
                                 </>}
                             </Card.Body>
                         </Card>

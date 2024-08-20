@@ -55,7 +55,6 @@ function FavoritesAdd() {
         );
     }
     else {
-
         return (
             < div >
                 <h4>Vas a agregar a Favoritos:</h4>
