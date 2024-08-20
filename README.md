@@ -1,6 +1,7 @@
 # E-commerce-con-React
 
-Este es un proyecto de e-commerce desarrollado con React que utiliza Firebase como base de datos para la gestión de productos y usuarios. La aplicación permite a los usuarios explorar productos, agregar, editar y eliminar favoritos, todo dentro de una experiencia moderna y dinámica.
+Este es un proyecto de e-commerce desarrollado con React que utiliza Firebase como base de datos para la gestión de productos y autenticación de usuarios. La aplicación permite a los usuarios explorar productos, agregar, editar y eliminar favoritos, todo dentro de una experiencia moderna y dinámica.
+Además, consume una API de MercadoLibre para obtener productos, los cuales luego se pueden agregar a favoritos en Firebase.
 
 ## Características
 
