@@ -8,9 +8,14 @@
 
 .customImgSize {
     width: auto;
+    max-width: 310px;
     max-height: 180px;
     object-fit: contain;
     margin: 25px;
+}
+
+.title {
+    margin-bottom: 35px;
 }
 
 .spinnerStyle {

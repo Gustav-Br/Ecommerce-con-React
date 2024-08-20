@@ -26,9 +26,9 @@ function FavoritesAdd() {
             const user = firebase.auth().currentUser;
             if (user) {
                 const producActual = { ...currentProduct, userId: user.uid };
+                // eslint-disable-next-line
                 const querySnapshot = await firebase.firestore().collection('productos')
                     .add(producActual)
-                console.log(querySnapshot);
                 setLouding(false);
                 setAlert({ variant: 'success', text: 'Producto agregado a Favoritos' })
                 setTimeout(() => {
@@ -58,10 +58,10 @@ function FavoritesAdd() {
 
         return (
             < div >
+                <h4>Vas a agregar a Favoritos:</h4>
                 {alert.variant && <AlertCustom {...alert} />}
                 <Container className={styles.customContainer} >
                     <Card className={styles.imageContainer} >
-                        <Card.Title>Vas a agregar a Favoritos:</Card.Title>
                         <Card.Img variant="top" src={producto.pictures[0].url} className={styles.customImgSize} />
                         <Card.Body>
                             <Card.Title>{producto.title}</Card.Title>

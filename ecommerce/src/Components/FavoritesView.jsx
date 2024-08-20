@@ -4,12 +4,16 @@ import { Card, Col, Row, Container, Button } from 'react-bootstrap';
 import firebase from '../Config/firebase';
 import styles from './FavoritesView.module.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
 
 
 function FavoritesView() {
     const [producto, setProducto] = useState([]);
     const [louding, setLouding] = useState(true);
     const navigate = useNavigate();
+    const context = useContext(AuthContext);
+
 
     useEffect(() => {
         const result = async () => {
@@ -34,8 +38,8 @@ function FavoritesView() {
         navigate('/editfavorito', { state: { producto } })
     }
 
-    const handleFavDelete = (id) => {
-        navigate(`/borrarfavorito/${id}`)
+    const handleFavDelete = (producto) => {
+        navigate('/borrarfavorito', { state: { producto } })
     };
 
     if (louding) {
@@ -48,6 +52,7 @@ function FavoritesView() {
     else {
         return (
             <div>
+                <h3 className={styles.title}>Tus productos Favoritos</h3>
                 <Container >
                     <Row>
                         {producto.map((item) => (
@@ -61,14 +66,16 @@ function FavoritesView() {
                                         <Card.Text>
                                             Precio: ${item.precio}
                                         </Card.Text>
-                                        <Button variant="primary" className={styles.buttonStyle}
-                                            onClick={() => handleFavEdit(item)}>
-                                            <span className={styles.linkButStyle}>Editar</span></Button>
-                                        <Button variant="primary" className={styles.buttonStyle}
-                                            onClick={() => handleFavDelete(item.id)}>
-                                            <span className={styles.linkButStyle}>Eliminar</span></Button>
-                                        <Button variant="primary" className={styles.buttonStyle}>
-                                            <Link to='/producto' className={styles.linkButStyle}>Cancelar</Link></Button>
+                                        {context.login && <>
+                                            <Button variant="primary" className={styles.buttonStyle}
+                                                onClick={() => handleFavEdit(item)}>
+                                                <span className={styles.linkButStyle}>Editar</span></Button>
+                                            <Button variant="primary" className={styles.buttonStyle}
+                                                onClick={() => handleFavDelete(item)}>
+                                                <span className={styles.linkButStyle}>Eliminar</span></Button>
+                                            <Button variant="primary" className={styles.buttonStyle}>
+                                                <Link to='/producto' className={styles.linkButStyle}>Cancelar</Link></Button>
+                                        </>}
                                     </Card.Body>
                                 </Card>
                             </Col>
