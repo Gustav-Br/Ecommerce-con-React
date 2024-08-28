@@ -7,7 +7,7 @@ import { AuthContext } from "../Context/AuthContext";
 function NavBar() {
     const context = useContext(AuthContext);
     return (
-        <Navbar expand="lg" className='bg-info mb-5 opacity-75' style={{ height: '90px', position: 'relative', zIndex: 100 }}>
+        <Navbar expand="md" className='bg-info mb-5 opacity-75' style={{ height: '90px', position: 'relative', zIndex: 100 }}>
             <Container>
                 <Navbar.Brand >Ecommerce</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

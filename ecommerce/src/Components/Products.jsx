@@ -54,7 +54,7 @@ function Products() {
     else {
         return (
             <div>
-                <Form onSubmit={handleSubmit} className="w-25 mx-auto mb-5">
+                <Form onSubmit={handleSubmit} className="w-25 mx-auto mb-5" style={{ minWidth: '15rem' }}>
                     <Form.Group className="d-flex align-items-center" controlId="formGroupSearch">
                         <Form.Control className="me-2" type="text" name="search"
                             value={input} onChange={handleChange} placeholder="buscar" />
