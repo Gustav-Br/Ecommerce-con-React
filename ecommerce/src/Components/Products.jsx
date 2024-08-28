@@ -64,7 +64,7 @@ function Products() {
                 <Container>
                     <Row>
                         {producto.map((item) => (
-                            <Col key={item.id} xs={12} sm={6} lg={4} xxl={3}>
+                            <Col key={item.id} xs={12} sm={6} lg={4} xxl={3} className={styles.cardColumn}>
                                 <Card style={{ width: '18rem' }} className={styles.imageContainer} >
                                     <Card.Img variant="top" src={item.thumbnail} className={styles.customImgSize} />
                                     <Card.Body>

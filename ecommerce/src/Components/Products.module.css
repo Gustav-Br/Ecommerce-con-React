@@ -1,8 +1,14 @@
+.cardColumn {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(224, 255, 244);
+}
+
 .imageContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-top: 20px;
     height: 400px;
 }
 
