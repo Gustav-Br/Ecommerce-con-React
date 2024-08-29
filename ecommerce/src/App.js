@@ -3,6 +3,7 @@ import './App.css';
 import NavBar from './Components/NavBar';
 import Public from './Routes/Public';
 import AuthProvider from './Context/AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

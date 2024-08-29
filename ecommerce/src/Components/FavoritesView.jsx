@@ -56,7 +56,7 @@ function FavoritesView() {
                 <Container >
                     <Row>
                         {producto.map((item) => (
-                            <Col key={item.id} xs={12} sm={6} lg={4} xxl={3}>
+                            <Col key={item.id} xs={12} sm={6} lg={4} xxl={3} className={styles.cardColumn}>
                                 <Card style={{ width: '20rem' }} className={styles.imageContainer} >
                                     <Card.Img variant="top" src={item.imagen} className={styles.customImgSize} />
                                     <Card.Body>

@@ -1,0 +1,44 @@
+.formContainer {
+    height: 75vh;
+    display: flex;
+    align-items: center;
+}
+
+.formStyles {
+    width: 25%;
+    margin: 0 auto;
+}
+
+.buttonStyle {
+    margin: 0 5px;
+}
+
+.linkButStyle {
+    color: white;
+    text-decoration: none;
+}
+
+.linkButStyle:hover {
+    background-color: blue;
+    padding: 9px 15px;
+    border-radius: 6px;
+    margin: 0 -12px;
+}
+
+@media (max-width: 450px) {
+    .formStyles {
+        width: 50%;
+    }
+}
+
+@media (max-width: 380px) {
+    .formStyles {
+        width: 75%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .formContainer {
+        height: 60vh;
+    }
+}

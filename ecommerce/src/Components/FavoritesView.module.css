@@ -1,3 +1,9 @@
+.cardColumn {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(224, 255, 244);
+}
+
 .imageContainer {
     display: flex;
     justify-content: center;
@@ -35,7 +41,7 @@
 
 .linkButStyle:hover {
     background-color: blue;
-    padding: 10px 18px;
+    padding: 9px 15px;
     border-radius: 6px;
     margin: 0 -12px;
 }

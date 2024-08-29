@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
 import firebase from '../Config/firebase';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import AlertCustom from './Alert';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
+import styles from './Form.module.css';
 
 
 function Login() {
@@ -24,13 +25,16 @@ function Login() {
                 context.handlerLogin(user.name);
                 setAlert({ variant: 'success', text: `Bienvenido/a ${user?.name}` });
                 setTimeout(() => {
-                    navigate('/producto')
+                    navigate('/producto');
                 }, 2000);
             }
         }
         catch (e) {
             console.log(e);
-            setAlert({ variant: 'danger', text: 'Ha ocurrido un error' })
+            setAlert({ variant: 'danger', text: 'Ha ocurrido un error' });
+            setTimeout(() => {
+                setAlert({ variant: '', text: '' });
+            }, 2400);
         }
     };
 
@@ -42,19 +46,22 @@ function Login() {
 
     return (
         <div>
-            <Form onSubmit={handleSubmit} className="w-25 mx-auto">
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" name="email"
-                        value={form.email} onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" name="password"
-                        value={form.password} onChange={handleChange} />
-                </Form.Group>
-                <Button type='submit'>Ingresar</Button>
-            </Form>
+            <Container className={styles.formContainer}>
+                <Form onSubmit={handleSubmit} className={styles.formStyles}>
+                    <Form.Group className="mb-3" controlId="formGroupEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" name="email"
+                            value={form.email} onChange={handleChange} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formGroupPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" name="password"
+                            value={form.password} onChange={handleChange} />
+                    </Form.Group>
+                    <Button type='submit' variant="primary" >
+                        <span className={styles.linkButStyle}>Ingresar</span></Button>
+                </Form>
+            </Container>
             {alert && <AlertCustom {...alert} />}
         </div >
     );
