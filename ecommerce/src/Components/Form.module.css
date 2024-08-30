@@ -25,15 +25,21 @@
     margin: 0 -12px;
 }
 
+@media (max-width: 1024px) {
+    .formStyles {
+        width: 40%;
+    }
+}
+
 @media (max-width: 450px) {
     .formStyles {
-        width: 50%;
+        width: 60%;
     }
 }
 
 @media (max-width: 380px) {
     .formStyles {
-        width: 75%;
+        width: 70%;
     }
 }
 

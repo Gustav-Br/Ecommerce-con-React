@@ -46,6 +46,7 @@ function Login() {
 
     return (
         <div>
+            <h3 className={styles.title}>Ingresa a tu cuenta</h3>
             <Container className={styles.formContainer}>
                 <Form onSubmit={handleSubmit} className={styles.formStyles}>
                     <Form.Group className="mb-3" controlId="formGroupEmail">

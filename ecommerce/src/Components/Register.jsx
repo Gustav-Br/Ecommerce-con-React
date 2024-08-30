@@ -54,6 +54,7 @@ function Register() {
 
     return (
         <div>
+            <h3 className={styles.title}>Registrarse</h3>
             {alert.variant && <AlertCustom {...alert} />}
             <Container className={styles.formContainer}>
                 <Form onSubmit={handleSubmit} className={styles.formStyles}>

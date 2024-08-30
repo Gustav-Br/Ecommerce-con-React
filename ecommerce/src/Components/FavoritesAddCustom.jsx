@@ -7,7 +7,7 @@ import AlertCustom from "./Alert";
 import styles from './Form.module.css';
 
 
-function FavoritesCustom() {
+function FavoritesAddCustom() {
 
     const [form, setForm] = useState({ descripcion: '', precio: 0, imagen: '', garantia: '' });
     const [alert, setAlert] = useState({ variant: '', text: '' });
@@ -80,4 +80,4 @@ function FavoritesCustom() {
     )
 };
 
-export default FavoritesCustom;
+export default FavoritesAddCustom;

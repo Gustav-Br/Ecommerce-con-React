@@ -5,7 +5,6 @@ import styles from './Products.module.css';
 import { Link } from 'react-router-dom';
 
 
-
 function Products() {
 
     const [producto, setProducto] = useState([]);
