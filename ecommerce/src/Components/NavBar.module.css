@@ -1,0 +1,20 @@
+.toggle {
+    position: absolute;
+    right: 40px;
+}
+
+
+@media (max-width: 767px) {
+    .dropdown {
+        background-color: rgb(72, 232, 253);
+        position: absolute;
+        width: 140px;
+        top: 75px;
+        right: 0px;
+    }
+
+    .userName {
+        position: absolute;
+        right: 112px;
+    }
+}

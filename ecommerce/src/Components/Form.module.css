@@ -27,17 +27,11 @@
 
 @media (max-width: 1024px) {
     .formStyles {
-        width: 40%;
-    }
-}
-
-@media (max-width: 450px) {
-    .formStyles {
         width: 60%;
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 450px) {
     .formStyles {
         width: 70%;
     }
