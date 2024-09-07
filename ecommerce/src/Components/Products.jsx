@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function Products() {
 
     const [producto, setProducto] = useState([]);
-    const [louding, setLouding] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [input, setInput] = useState('');
     const [search, setSearch] = useState(sessionStorage.getItem('search') || 'celulares');
 
@@ -19,7 +19,7 @@ function Products() {
                 const res = await fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${search}`);
                 const respData = await res.json();
                 setProducto(respData.results);
-                setLouding(false);
+                setLoading(false);
             }
             catch (e) {
                 console.log(e);
@@ -43,7 +43,7 @@ function Products() {
         };
     };
 
-    if (louding) {
+    if (loading) {
         return (
             <Spinner animation="border" role="status" variant="primary" className={styles.spinnerStyle}>
                 <span className="visually-hidden">Loading...</span>

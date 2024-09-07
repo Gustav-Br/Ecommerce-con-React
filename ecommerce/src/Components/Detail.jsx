@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
-import { Button, Card, Container, Col } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Card, Container, Col } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from './Detail.module.css';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
+import { ArrowLeftSquare, Heart } from 'react-bootstrap-icons';
+import { favoritesAddProd } from '../Utils/favoritesAddProd';
+import AlertCustom from './Alert';
 
 
 
@@ -13,7 +16,8 @@ function Detail() {
     const context = useContext(AuthContext);
     const { id } = useParams();
     const [producto, setProducto] = useState({});
-    const [louding, setLouding] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [alert, setAlert] = useState({ variant: '', text: '' });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,7 +26,7 @@ function Detail() {
                 const res = await fetch(`https://api.mercadolibre.com/items/${id}`);
                 const respData = await res.json();
                 setProducto(respData);
-                setLouding(false);
+                setLoading(false);
             }
             catch (e) {
                 console.log(e);
@@ -33,10 +37,11 @@ function Detail() {
     }, [id]);
 
     const handlerFavorite = (producto) => {
-        navigate('/altafavorito', { state: { producto } })
+
+        favoritesAddProd(producto, setLoading, setAlert, navigate);
     }
 
-    if (louding) {
+    if (loading) {
         return (
             <Spinner animation="border" role="status" variant="primary" className={styles.spinnerStyle}>
                 <span className="visually-hidden">Loading...</span>
@@ -46,6 +51,7 @@ function Detail() {
     else {
         return (
             <div>
+                {alert.variant && <AlertCustom {...alert} />}
                 <Container className={styles.customContainer} >
                     {/* Tarjeta para imágenes en miniatura */}
                     <Col xs={12} md={4} >
@@ -67,12 +73,11 @@ function Detail() {
                                 <Card.Title>{producto.title}</Card.Title>
                                 <Card.Text>Precio: ${producto.price}</Card.Text>
                                 <Card.Text>{producto.warranty}</Card.Text>
-                                <Button variant="primary" className={styles.buttonStyle}>
-                                    <Link to='/producto' className={styles.linkButStyle}>Volver</Link></Button>
+                                <Link to='/producto' >
+                                    <ArrowLeftSquare className={styles.iconStyle} size={30} /></Link>
                                 {context.login && <>
-                                    <Button variant="primary" className={styles.buttonStyle}
-                                        onClick={() => { handlerFavorite(producto) }}>
-                                        <Link className={styles.linkButStyle}>Add Favorito</Link></Button>
+                                    <Heart onClick={() => handlerFavorite(producto)}
+                                        className={styles.iconStyle} size={30} color="blue" />
                                 </>}
                             </Card.Body>
                         </Card>

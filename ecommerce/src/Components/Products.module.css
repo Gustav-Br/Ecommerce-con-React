@@ -1,7 +1,8 @@
 .cardColumn {
     display: flex;
     justify-content: center;
-    background-color: rgb(224, 255, 244);
+    /* background-color: rgb(224, 255, 244);   */
+    background-color: rgb(230, 255, 247);
 }
 
 .imageContainer {

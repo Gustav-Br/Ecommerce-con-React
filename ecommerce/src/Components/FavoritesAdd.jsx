@@ -16,12 +16,12 @@ function FavoritesAdd() {
         garantia: producto.warranty
     }
     const [alert, setAlert] = useState({ variant: '', text: '' });
-    const [louding, setLouding] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
 
     const handleFavAdd = async () => {
-        setLouding(true);
+        setLoading(true);
         try {
             const user = firebase.auth().currentUser;
             if (user) {
@@ -29,13 +29,13 @@ function FavoritesAdd() {
                 // eslint-disable-next-line
                 const querySnapshot = await firebase.firestore().collection('productos')
                     .add(producActual)
-                setLouding(false);
+                setLoading(false);
                 setAlert({ variant: 'success', text: 'Producto agregado a Favoritos' })
                 setTimeout(() => {
                     navigate('/producto')
                 }, 2000);
             } else {
-                setLouding(false);
+                setLoading(false);
                 setAlert({ variant: 'danger', text: 'El usuario debe estar logueado' });
                 setTimeout(() => {
                     setAlert({ variant: '' });
@@ -47,7 +47,7 @@ function FavoritesAdd() {
         };
     };
 
-    if (louding) {
+    if (loading) {
         return (
             <Spinner animation="border" role="status" variant="primary" className={styles.spinnerStyle}>
                 <span className="visually-hidden">Loading...</span>

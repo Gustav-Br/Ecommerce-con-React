@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import styles from './NavBar.module.css';
@@ -21,12 +21,13 @@ function NavBar() {
                         </>}
                         {context.login && <>
                             <Nav.Link as={Link} to='/producto'>Productos</Nav.Link>
-                            <NavDropdown title="Favoritos" id="basic-nav-dropdown">
+                            <Nav.Link as={Link} to='/verfavorito'>Favoritos</Nav.Link>
+                            {/* <NavDropdown title="Favoritos" id="basic-nav-dropdown">
                                 <NavDropdown.Item  >Favoritos</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item as={Link} to='/verfavorito'>Ver Favoritos</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to='/agregarfavorito'>Agregar Favorito</NavDropdown.Item>
-                            </NavDropdown>
+                            </NavDropdown> */}
 
                             <Nav.Link onClick={context.handlerLogout}>Salir</Nav.Link>
                         </>}

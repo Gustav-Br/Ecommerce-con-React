@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button, Card, Container } from "react-bootstrap";
+import { Card, Container } from "react-bootstrap";
 import firebase from '../Config/firebase';
 import styles from './FavoritesDelet.module.css';
 import AlertCustom from "./Alert";
+import { Check2Square, XSquare } from "react-bootstrap-icons";
 
 
 function FavoritesDelet() {
@@ -23,7 +24,7 @@ function FavoritesDelet() {
                 const document = await querySnapshot.get();
                 if (document.data().userId === user.uid) {
                     await querySnapshot.delete();
-                    setAlert({ variant: 'success', text: 'Documento eliminado correctamente' });
+                    setAlert({ variant: 'success', text: 'Producto eliminado correctamente' });
                     setTimeout(() => {
                         navigate('/verfavorito')
                     }, 2000);
@@ -42,7 +43,7 @@ function FavoritesDelet() {
 
     return (
         <div>
-            <h3 className={styles.title}>Vas a Eliminar este producto</h3>
+            <h3 className={styles.title}>Seguro quieres eliminar este producto?</h3>
             {alert.variant && <AlertCustom {...alert} />}
             <Container className={styles.customContainer}>
                 <Card style={{ width: '22rem' }} className={styles.imageContainer} >
@@ -54,11 +55,10 @@ function FavoritesDelet() {
                             Precio: ${producto.precio}
                         </Card.Text>
                         {context.login && <>
-                            <Button variant="primary" className={styles.buttonStyle}
-                                onClick={() => handleDelete(producto)}>
-                                <span className={styles.linkButStyle}>Eliminar</span></Button>
-                            <Button variant="primary" className={styles.buttonStyle}>
-                                <Link to='/verfavorito' className={styles.linkButStyle}>Cancelar</Link></Button>
+                            <Check2Square onClick={() => handleDelete(producto)}
+                                className={styles.iconStyle} size={30} color="blue" />
+                            <Link to='/verfavorito' className={styles.linkStyle}>
+                                <XSquare className={styles.iconStyle} size={30} /></Link>
                         </>}
                     </Card.Body>
                 </Card>

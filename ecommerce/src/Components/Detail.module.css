@@ -27,22 +27,6 @@
     left: 50%;
 }
 
-.buttonStyle {
-    margin: 0 8px;
-}
-
-.linkButStyle {
-    color: white;
-    text-decoration: none;
-}
-
-.linkButStyle:hover {
-    background-color: blue;
-    padding: 9px 16px;
-    border-radius: 6px;
-    margin: 0 -12px;
-}
-
 .thumbnailImg {
     height: 85px;
     width: auto;
@@ -85,4 +69,14 @@
     left: 15%;
     /* Mover hacia arriba */
     transform: scale(3) translate(15%, -30%);
+}
+
+.iconStyle {
+    margin: 0 12px;
+    color: blue;
+}
+
+.iconStyle:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s ease-in-out;
 }

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import { Card, Col, Row, Container, Button } from 'react-bootstrap';
+import { Card, Col, Row, Container } from 'react-bootstrap';
 import firebase from '../Config/firebase';
 import styles from './FavoritesView.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
+import { ArrowLeftSquare, Pencil, Trash } from 'react-bootstrap-icons';
 
 
 function FavoritesView() {
     const [producto, setProducto] = useState([]);
-    const [louding, setLouding] = useState(true);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const context = useContext(AuthContext);
 
@@ -24,7 +25,7 @@ function FavoritesView() {
                     .get();
                 const respData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
                 setProducto(respData);
-                setLouding(false);
+                setLoading(false);
             }
             catch (e) {
                 console.log(e);
@@ -42,7 +43,7 @@ function FavoritesView() {
         navigate('/borrarfavorito', { state: { producto } })
     };
 
-    if (louding) {
+    if (loading) {
         return (
             <Spinner animation="border" role="status" variant="primary" className={styles.spinnerStyle}>
                 <span className="visually-hidden">Loading...</span>
@@ -64,14 +65,12 @@ function FavoritesView() {
                                         <Card.Text>{item.garantia}</Card.Text>
                                         <Card.Text>Precio: ${item.precio}</Card.Text>
                                         {context.login && <>
-                                            <Button variant="primary" className={styles.buttonStyle}
-                                                onClick={() => handleFavEdit(item)}>
-                                                <span className={styles.linkButStyle}>Editar</span></Button>
-                                            <Button variant="primary" className={styles.buttonStyle}
-                                                onClick={() => handleFavDelete(item)}>
-                                                <span className={styles.linkButStyle}>Eliminar</span></Button>
-                                            <Button variant="primary" className={styles.buttonStyle}>
-                                                <Link to='/producto' className={styles.linkButStyle}>Cancelar</Link></Button>
+                                            <Pencil className={styles.iconStyle} size={30}  /* boton editar */
+                                                onClick={() => handleFavEdit(item)} />
+                                            <Trash className={styles.iconStyle} size={30}   /* boton eliminar */
+                                                onClick={() => handleFavDelete(item)} />
+                                            <Link to='/producto' className={styles.linkStyle}>                         {/* boton volver  */}
+                                                <ArrowLeftSquare className={styles.iconStyle} size={30} /></Link>
                                         </>}
                                     </Card.Body>
                                 </Card>
