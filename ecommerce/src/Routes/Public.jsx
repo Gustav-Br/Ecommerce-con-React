@@ -8,8 +8,6 @@ import Register from '../Components/Register';
 import FavoritesView from '../Components/FavoritesView';
 import FavoritesEdit from '../Components/FavoritesEdit';
 import FavoritesDelet from '../Components/FavoritesDelet';
-import FavoritesAdd from '../Components/FavoritesAdd';
-import FavoritesAddCustom from '../Components/FavoritesAddCustom';
 
 
 function Public() {
@@ -21,9 +19,7 @@ function Public() {
                 <Route path='/producto/:id' element={<Detail />} />
                 <Route path='/ingresar' element={<Login />} />
                 <Route path='/alta' element={<Register />} />
-                <Route path='/altafavorito' element={<FavoritesAdd />} />
                 <Route path='/verfavorito' element={<FavoritesView />} />
-                <Route path='/agregarfavorito' element={<FavoritesAddCustom />} />
                 <Route path='/editfavorito' element={<FavoritesEdit />} />
                 <Route path='/borrarfavorito' element={<FavoritesDelet />} />
                 <Route path='*' element={<NotFound />} />

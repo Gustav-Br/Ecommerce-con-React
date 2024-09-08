@@ -1,12 +1,23 @@
+.navBar {
+    height: 90px;
+    position: relative;
+    z-index: 100;
+    opacity: 80%;
+}
+
 .toggle {
     position: absolute;
     right: 40px;
 }
 
+.userName {
+    margin-top: 10px;
+}
 
 @media (max-width: 767px) {
     .dropdown {
         background-color: rgb(72, 232, 253);
+        opacity: 1;
         position: absolute;
         width: 140px;
         top: 75px;
@@ -16,5 +27,23 @@
     .userName {
         position: absolute;
         right: 112px;
+    }
+
+    .navBar {
+        opacity: 100%;
+    }
+}
+
+@media (max-width: 338px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start !important;
+        margin-left: 20px;
+    }
+
+    .userName {
+        position: static;
+        /* padding-left: 20px; */
     }
 }
