@@ -80,3 +80,19 @@
     transform: scale(1.2);
     transition: transform 0.2s ease-in-out;
 }
+
+@media (max-width: 767px) {
+
+    .customContainer {
+        flex-direction: column-reverse;
+        height: auto;
+        padding-bottom: 40px;
+    }
+
+    .colCard {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+}

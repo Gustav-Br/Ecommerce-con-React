@@ -54,7 +54,7 @@ function Detail() {
                 {alert.variant && <AlertCustom {...alert} />}
                 <Container className={styles.customContainer} >
                     {/* Tarjeta para imágenes en miniatura */}
-                    <Col xs={12} md={4} >
+                    <Col xs={12} md={4} className={styles.colCard}>
                         <Card style={{ width: '9rem', border: 'none' }} className={styles.thumbnailContainer} >
                             <Col>
                                 {producto.pictures.slice(0, 5).map((picture, index) => (
@@ -66,7 +66,7 @@ function Detail() {
                         </Card>
                     </Col>
                     {/* Tarjeta para imágen principal */}
-                    <Col xs={12} md={6} >
+                    <Col xs={12} md={6} className={styles.colCard}>
                         <Card className={styles.imageContainer} >
                             <Card.Img variant="top" src={producto.pictures[0].url} className={styles.customImgSize} />
                             <Card.Body>
