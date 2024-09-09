@@ -69,6 +69,7 @@
 
     .customContainer {
         flex-direction: column-reverse;
+        align-items: flex-start;
         height: auto;
         padding-bottom: 40px;
     }
@@ -76,12 +77,12 @@
     .colCard {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 30px;
     }
 }
 
-@media only screen and (max-width: 767px) and (orientation: landscape) {
+@media only screen and (max-width: 850px) and (orientation: landscape) {
     .customContainer {
         align-items: flex-start;
         height: auto;
