@@ -22,7 +22,7 @@ function Login() {
                     .where('userId', '==', responseUser.user.uid)
                     .get()
                 const user = userDocument.docs[0].data();
-                context.handlerLogin(user.name);
+                context.handleLogin(user.name);
                 setAlert({ variant: 'success', text: `Bienvenido/a ${user?.name}` });
                 setTimeout(() => {
                     navigate('/producto');

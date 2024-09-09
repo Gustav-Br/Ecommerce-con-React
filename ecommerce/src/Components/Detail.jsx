@@ -17,6 +17,7 @@ function Detail() {
     const { id } = useParams();
     const [producto, setProducto] = useState({});
     const [loading, setLoading] = useState(true);
+    const [mainImag, setMainImag] = useState('');
     const [alert, setAlert] = useState({ variant: '', text: '' });
     const navigate = useNavigate();
 
@@ -27,6 +28,7 @@ function Detail() {
                 const respData = await res.json();
                 setProducto(respData);
                 setLoading(false);
+                setMainImag(respData.pictures[0].url);
             }
             catch (e) {
                 console.log(e);
@@ -36,9 +38,12 @@ function Detail() {
 
     }, [id]);
 
-    const handlerFavorite = (producto) => {
-
+    const handleFavorite = (producto) => {
         favoritesAddProd(producto, setLoading, setAlert, navigate);
+    }
+
+    const handleMinImag = (picture) => {
+        setMainImag(picture);
     }
 
     if (loading) {
@@ -59,7 +64,9 @@ function Detail() {
                             <Col>
                                 {producto.pictures.slice(0, 5).map((picture, index) => (
                                     <Card key={picture.id} className={styles.thumbnailCard}>
-                                        <img src={picture.url} alt={producto.title} className={`${styles.thumbnailImg} ${index < 2 ? styles.topThumbnailImg : styles.bottomThumbnailImg}`} />
+                                        <img src={picture.url} alt={producto.title}
+                                            onMouseEnter={() => handleMinImag(picture.url)}
+                                            className={`${styles.thumbnailImg} `} />
                                     </Card>
                                 ))}
                             </Col>
@@ -68,7 +75,7 @@ function Detail() {
                     {/* Tarjeta para imágen principal */}
                     <Col xs={12} md={6} className={styles.colCard}>
                         <Card className={styles.imageContainer} >
-                            <Card.Img variant="top" src={producto.pictures[0].url} className={styles.customImgSize} />
+                            <Card.Img variant="top" src={mainImag} className={styles.customImgSize} alt={producto.title} />
                             <Card.Body>
                                 <Card.Title>{producto.title}</Card.Title>
                                 <Card.Text>Precio: ${producto.price}</Card.Text>
@@ -76,7 +83,7 @@ function Detail() {
                                 <Link to='/producto' >
                                     <ArrowLeftSquare className={styles.iconStyle} size={30} /></Link>
                                 {context.login && <>
-                                    <Heart onClick={() => handlerFavorite(producto)}
+                                    <Heart onClick={() => handleFavorite(producto)}
                                         className={styles.iconStyle} size={30} color="blue" />
                                 </>}
                             </Card.Body>

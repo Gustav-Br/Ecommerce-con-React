@@ -22,7 +22,7 @@ function NavBar() {
                         {context.login && <>
                             <Nav.Link as={Link} to='/producto'>Productos</Nav.Link>
                             <Nav.Link as={Link} to='/verfavorito'>Favoritos</Nav.Link>
-                            <Nav.Link onClick={context.handlerLogout}>Salir</Nav.Link>
+                            <Nav.Link onClick={context.handleLogout}>Salir</Nav.Link>
                         </>}
                     </Nav>
                 </Navbar.Collapse>

@@ -49,26 +49,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    /* Para que el hover de la imagen se posicione sobre ella */
 }
 
-.topThumbnailImg:hover {
-    z-index: 10;
-    position: relative;
-    top: 30%;
-    left: 15%;
-    /* Mover hacia abajo */
-    transform: scale(3) translate(15%, 30%);
-}
-
-.bottomThumbnailImg:hover {
-    z-index: 10;
-    position: relative;
-    top: -30%;
-    left: 15%;
-    /* Mover hacia arriba */
-    transform: scale(3) translate(15%, -30%);
+.thumbnailCard:hover {
+    border: 1px solid rgb(44, 44, 44);
 }
 
 .iconStyle {

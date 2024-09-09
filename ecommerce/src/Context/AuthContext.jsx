@@ -6,13 +6,13 @@ const AuthProvider = ({ children }) => {
     const [login, setLogin] = useState(localStorage.getItem('login') || false);
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || {}); //recuperar 'user' de locaStorage, pasarlo a objeto
 
-    const handlerLogin = (userData) => {
+    const handleLogin = (userData) => {
         setLogin(true);
         localStorage.setItem('login', true);
         setUser(userData);
         localStorage.setItem('user', JSON.stringify(userData));  //localStorage solo almacena string, debo pasar (userData) a string
     };
-    const handlerLogout = () => {
+    const handleLogout = () => {
         setLogin(false);
         localStorage.removeItem('login');
         setUser();
@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ login, user, handlerLogin, handlerLogout }} >
+            value={{ login, user, handleLogin, handleLogout }} >
             {children}
 
         </AuthContext.Provider>
