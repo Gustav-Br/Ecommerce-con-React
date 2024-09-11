@@ -3,7 +3,7 @@ import { validate, validateForm } from '../Utils/validate';
 import { Form, Button, Container } from 'react-bootstrap';
 import firebase from '../Config/firebase';
 import AlertCustom from './Alert';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Form.module.css';
 
 
@@ -55,6 +55,7 @@ function Register() {
     return (
         <div>
             <h3 className={styles.title}>Registrarse</h3>
+            <div><Link to='/ingresar' className={styles.registerLink}>Ya tengo cuenta &gt;</Link></div>
             {alert.variant && <AlertCustom {...alert} />}
             <Container className={styles.formContainer}>
                 <Form onSubmit={handleSubmit} className={styles.formStyles}>

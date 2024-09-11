@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import firebase from '../Config/firebase';
 import { Form, Button, Container } from 'react-bootstrap';
 import AlertCustom from './Alert';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 import styles from './Form.module.css';
 
@@ -61,6 +61,8 @@ function Login() {
                     </Form.Group>
                     <Button type='submit' variant="primary" >
                         <span className={styles.linkButStyle}>Ingresar</span></Button>
+                    <div className={styles.crearCuenta}>¿No tenés cuenta? <Link to='/alta'
+                        className={styles.crearCuentaLink}>Crear Cuenta &gt;</Link></div>
                 </Form>
             </Container>
             {alert && <AlertCustom {...alert} />}

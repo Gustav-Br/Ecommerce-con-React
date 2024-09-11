@@ -1,6 +1,7 @@
 .formContainer {
     height: 75vh;
     display: flex;
+    /* flex-direction: column; */
     align-items: center;
 }
 
@@ -23,6 +24,31 @@
     padding: 9px 15px;
     border-radius: 6px;
     margin: 0 -12px;
+}
+
+.crearCuenta {
+    font-size: 13px;
+    padding-top: 20px;
+}
+
+.crearCuentaLink {
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.crearCuentaLink:hover {
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.registerLink {
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.registerLink:hover {
+    font-size: 14px;
+    text-decoration: underline;
 }
 
 @media (max-width: 1024px) {
